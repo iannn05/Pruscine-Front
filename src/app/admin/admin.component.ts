@@ -76,13 +76,12 @@ export class AdminComponent {
     const body ={
       pelicula:{
         nombre: formData.nombre,
-        anioPublicado: formData.email,
-        pais: formData.contrasenia,
-        fechaNacimiento: formData.fechaNacimiento
+        anioPublicado: formData.anioPublicado,
+        pais: formData.pais,
       }
     }
 
-    
+    this.peliculaService.addPelicula(body).subscribe();
   }
 
   addActor(formData: any){

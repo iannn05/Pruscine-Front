@@ -30,9 +30,17 @@ export class GeneroService {
     return this.http.get(`${this.BASE_URL}`, this.httpOptions);
   }
 
-  addGenero(pelicula: any): Observable<void> {
-    console.log(pelicula);
-    return this.http.post<void>(`${this.BASE_URL}`, pelicula, this.httpOptions);
+  addGenero(genero: any): Observable<void> {
+    console.log(genero);
+    const httpoptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Accept': 'application/json',
+        'authorization': localStorage.getItem('token')!
+      })
+    };
+
+    return this.http.post<void>(`${this.BASE_URL}`, genero, this.httpOptions);
   }
 
   deleteGenero(id: number): Observable<void> {

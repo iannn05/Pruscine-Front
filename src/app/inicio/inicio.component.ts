@@ -11,8 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent {
-  service: AuthService;
-  constructor(public authService: AuthService){
-    this.service = authService;
+  constructor(){
+
   }
 }

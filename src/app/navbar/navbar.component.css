@@ -1,26 +1,26 @@
-.logo {
-    width: 20%;
-
-}
-
-nav{
-    background-color: rgb(255, 187, 0);
-}
-
-.navbar-menu{
+nav {
     display: flex;
-    justify-content: space-around;
-}
-
-ul{
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: space-between; /* Espacia el logo y los elementos del menú */
+    padding: 0 20px; /* Agrega algo de espacio lateral */
+    background-color: rgb(255, 187, 0); /* Color de fondo */
+    height: 60px; /* Ajusta la altura del navbar */
+  }
+  
+  nav .logo {
+    width: 120px; /* Ajusta el tamaño del logo */
+  }
+  
+  nav ul {
     display: flex;
-    justify-content: space-around;
-}
-
-li{
-    list-style-type: none;
-}
-a{
-    text-decoration: none;
-    color: black;
-}
+    gap: 20px; /* Espaciado entre elementos del menú */
+    list-style: none; /* Quita los puntos de la lista */
+    margin: 0; /* Elimina márgenes externos */
+    padding: 0; /* Elimina relleno */
+  }
+  
+  nav ul li a {
+    text-decoration: none; /* Sin subrayado */
+    color: black; /* Color del texto */
+  }
+  

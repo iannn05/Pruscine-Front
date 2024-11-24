@@ -30,9 +30,9 @@ export class ActorService {
     return this.http.get(`${this.BASE_URL}`, this.httpOptions);
   }
 
-  addActor(pelicula: any): Observable<void> {
-    console.log(pelicula);
-    return this.http.post<void>(`${this.BASE_URL}`, pelicula, this.httpOptions);
+  addActor(actor: any): Observable<void> {
+    console.log(actor);
+    return this.http.post<void>(`${this.BASE_URL}`, actor, this.httpOptions);
   }
 
   deleteActor(id: number): Observable<void> {

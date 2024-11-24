@@ -30,9 +30,9 @@ export class DirectorService {
     return this.http.get(`${this.BASE_URL}`, this.httpOptions);
   }
 
-  addDirector(pelicula: any): Observable<void> {
-    console.log(pelicula);
-    return this.http.post<void>(`${this.BASE_URL}`, pelicula, this.httpOptions);
+  addDirector(director: any): Observable<void> {
+    console.log(director);
+    return this.http.post<void>(`${this.BASE_URL}`, director, this.httpOptions);
   }
 
   deleteDirector(id: number): Observable<void> {
