@@ -5,11 +5,15 @@ import { UserService } from '../services/user.services';
 import { FormBuilder } from '@angular/forms';
 import userModel from '../models/user.model';
 import { PeliService } from '../services/peli.services';
+import { DirectorService } from '../services/director.services';
+import { ActorService } from '../services/actor.services';
+import { GeneroService } from '../services/genero.services';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [ RouterModule, FormsModule, ReactiveFormsModule ],
+  imports: [ RouterModule, FormsModule, ReactiveFormsModule, CommonModule ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
@@ -18,14 +22,54 @@ export class AdminComponent {
     
   }
 
-  service: PeliService = inject(PeliService);
+  showPeliculaForm: boolean = false;
+  showActorForm: boolean = false;
+  showDirectorForm: boolean = false;
+  showGeneroForm: boolean = false;
+
+  toggleForm(form: string) {
+    switch (form) {
+      case 'pelicula':
+        this.showPeliculaForm = !this.showPeliculaForm;
+        break;
+      case 'actor':
+        this.showActorForm = !this.showActorForm;
+        break;
+      case 'director':
+        this.showDirectorForm = !this.showDirectorForm;
+        break;
+      case 'genero':
+        this.showGeneroForm = !this.showGeneroForm;
+        break;
+    }
+  }
+
+  peliculaService: PeliService = inject(PeliService);
+  actorService: ActorService = inject(ActorService);
+  directorService: DirectorService = inject(DirectorService);
+  generoService: GeneroService = inject(GeneroService);
   
 
-  applyForm = new FormGroup({
+  peliculaForm = new FormGroup({
     nombre: new FormControl(''),
     anioPublicado: new FormControl(''),
     pais: new FormControl(''),
-    fechaNacimiento: new FormControl('')
+  })
+
+  actorForm = new FormGroup({
+    nombre: new FormControl(''),
+    fechaNacimiento: new FormControl(''),
+    descripcion: new FormControl('')
+  })
+
+  directorForm = new FormGroup({
+    nombre: new FormControl(''),
+    fechaNacimiento: new FormControl(''),
+    descripcion: new FormControl('')
+  })
+
+  generoForm = new FormGroup({
+    nombre: new FormControl(''),
   })
 
   addPelicula(formData: any){
@@ -38,14 +82,64 @@ export class AdminComponent {
       }
     }
 
-    this.service.addUsuario(body).subscribe();
+    
   }
 
-signup(){
-  console.log("llegue");
-  
-  const formData = this.applyForm.value;
-  this.addUser(formData);
-  this.router.navigate(['/ingreso'])
-}
+  addActor(formData: any){
+    const body ={
+      actor:{
+        nombre: formData.nombre,
+        fechaNacimiento: formData.fechaNacimiento,
+        descripcion: formData.descripcion
+      }
+    }
+
+    this.actorService.addActor(body).subscribe();
+  }
+
+  addDirector(formData: any){
+    const body ={
+      director:{
+        nombre: formData.nombre,
+        fechaNacimiento: formData.fechaNacimiento,
+        descripcion: formData.descripcion
+      }
+    }
+
+    this.directorService.addDirector(body).subscribe();
+  }
+
+  addGenero(formData: any){
+    const body ={
+      genero:{
+        nombre: formData.nombre
+      }
+    }
+
+    this.generoService.addGenero(body).subscribe();
+  }
+
+  agregarPelicula(){
+    const formData = this.peliculaForm.value;
+    this.addPelicula(formData);
+    this.router.navigate(['/admin']);
+  }
+
+  agregarActor(){
+    const formData = this.actorForm.value;
+    this.addActor(formData);
+    this.router.navigate(['/admin']);
+  }
+
+  agregarDirector(){
+    const formData = this.directorForm.value;
+    this.addDirector(formData);
+    this.router.navigate(['/admin']);
+  }
+
+  agregarGenero(){
+    const formData = this.generoForm.value;
+    this.addGenero(formData);
+    this.router.navigate(['/admin']);
+  }
 }

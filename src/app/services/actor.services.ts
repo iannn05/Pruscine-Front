@@ -9,7 +9,7 @@ import { IUser } from '../models/user.model';
   providedIn: 'root'
 })
 
-export class GeneroService {
+export class ActorService {
 
   readonly httpOptions = {
     headers: new HttpHeaders({
@@ -18,24 +18,24 @@ export class GeneroService {
     })
   };
 
-  private BASE_URL = 'http://localhost:3000/genero';
+  private BASE_URL = 'http://localhost:3000/actor';
 
   constructor(private http: HttpClient) { }
 
-  getOneGenero(id: number): Observable<any> {
+  getOneActor(id: number): Observable<any> {
     return this.http.get(`${this.BASE_URL}` + `/${id}`, this.httpOptions);
   }
 
-  getGeneros(): Observable<any> {
+  getActores(): Observable<any> {
     return this.http.get(`${this.BASE_URL}`, this.httpOptions);
   }
 
-  addGenero(pelicula: any): Observable<void> {
+  addActor(pelicula: any): Observable<void> {
     console.log(pelicula);
     return this.http.post<void>(`${this.BASE_URL}`, pelicula, this.httpOptions);
   }
 
-  deleteGenero(id: number): Observable<void> {
+  deleteActor(id: number): Observable<void> {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`, this.httpOptions);
   }
 }

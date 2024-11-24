@@ -1,15 +1,37 @@
 <div>
-    <form [formGroup]="applyForm" (submit)="agregarPelicula()">
+    <h2 (click)="toggleForm('pelicula')" class="toggle-header">Registrar Película</h2>
+    <form *ngIf="showPeliculaForm" [formGroup]="peliculaForm" (submit)="agregarPelicula()">
         <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
         <input type="date" placeholder="Fecha publicación" class="date" formControlName="fechaPublicacion">
-        <select name="genero" formControlName="genero">
-            <option value="accion">Acción</option>
-            <option value="comedia">Comedia</option>
-            <option value="terror">Terror</option>
-            <option value="drama">Drama</option>
-            <option value="thriller">Thriller</option>
-        </select>
         <input type="text" placeholder="País" class="country" formControlName="pais">
         <button type="submit">Registrar película</button>
+    </form>
+</div>
+
+<div>
+    <h2 (click)="toggleForm('actor')" class="toggle-header">Agregar Actor</h2>
+    <form *ngIf="showActorForm" [formGroup]="actorForm" (submit)="agregarActor()">
+        <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
+        <input type="date" placeholder="Fecha de Nacimiento" class="date" formControlName="fechaNacimiento">
+        <input type="text" placeholder="Descripcion" class="name" formControlName="descripcion">
+        <button type="submit">Agregar actor</button>
+    </form>
+</div>
+
+<div>
+    <h2 (click)="toggleForm('director')" class="toggle-header">Agregar Director</h2>
+    <form *ngIf="showDirectorForm" [formGroup]="directorForm" (submit)="agregarDirector()">
+        <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
+        <input type="date" placeholder="Fecha de Nacimiento" class="date" formControlName="fechaNacimiento">
+        <input type="text" placeholder="Descripcion" class="name" formControlName="descripcion">
+        <button type="submit">Agregar director</button>
+    </form>
+</div>
+
+<div>
+    <h2 (click)="toggleForm('genero')" class="toggle-header">Agregar Género</h2>
+    <form *ngIf="showGeneroForm" [formGroup]="generoForm" (submit)="agregarGenero()">
+        <input type="text" placeholder="Nombre del genero" class="name" formControlName="nombre">
+        <button type="submit">Agregar género</button>
     </form>
 </div>

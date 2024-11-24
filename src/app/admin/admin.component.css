@@ -1,0 +1,20 @@
+.toggle-header {
+    cursor: pointer;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.toggle-header:hover {
+    background-color: #e0e0e0;
+}
+
+form {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
