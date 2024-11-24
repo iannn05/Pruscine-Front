@@ -4,13 +4,13 @@ import { AuthService } from '../services/auth.services';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-inicio',
+  selector: 'app-navbar',
   standalone: true,
   imports: [RouterOutlet, RouterModule, CommonModule],
-  templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.css'
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css'
 })
-export class InicioComponent {
+export class NavbarComponent {
   service: AuthService;
   constructor(public authService: AuthService){
     this.service = authService;

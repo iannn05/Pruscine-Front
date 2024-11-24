@@ -39,9 +39,9 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const id = this.authService.getData();
-    console.log(id);
-    this.userService.getOneUsuario(id).subscribe((data: IUser) => {
+    const userData = this.authService.getData();
+    console.log(userData.idusuario);
+    this.userService.getOneUsuario(userData.idusuario).subscribe((data: IUser) => {
       console.log(data);
       this.usuario = data;
       console.log(this.usuario.idusuario);

@@ -1,1 +1,15 @@
-<p>admin works!</p>
+<div>
+    <form [formGroup]="applyForm" (submit)="agregarPelicula()">
+        <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
+        <input type="date" placeholder="Fecha publicación" class="date" formControlName="fechaPublicacion">
+        <select name="genero" formControlName="genero">
+            <option value="accion">Acción</option>
+            <option value="comedia">Comedia</option>
+            <option value="terror">Terror</option>
+            <option value="drama">Drama</option>
+            <option value="thriller">Thriller</option>
+        </select>
+        <input type="text" placeholder="País" class="country" formControlName="pais">
+        <button type="submit">Registrar película</button>
+    </form>
+</div>

@@ -25,17 +25,22 @@ export class AuthService {
 
   getData() {
     if (typeof window !== 'undefined' && window.localStorage) {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const data = atob(token.split('.')[1]);
-        console.log(data);
-        return JSON.parse(data).data;
-      } else {
-        return null;
-      }
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const payload = token.split('.')[1];
+                const decodedPayload = JSON.parse(atob(payload)); // Decodifica el payload
+                console.log('Datos decodificados del token:', decodedPayload);
+                return decodedPayload; // Devuelve los datos completos del token
+            } catch (e) {
+                console.error('Error al decodificar el token:', e);
+                return null;
+            }
+        }
     }
     return null;
   }
+
 
   logUser(usuario: any): Observable<any> {
     console.log(usuario);
