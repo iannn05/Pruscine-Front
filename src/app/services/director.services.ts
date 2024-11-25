@@ -18,7 +18,7 @@ export class DirectorService {
     })
   };
 
-  private BASE_URL = 'http://localhost:3000/director';
+  private BASE_URL = 'http://localhost:8081/director';
 
   constructor(private http: HttpClient) { }
 
