@@ -8,11 +8,12 @@ import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { inject } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-ingreso',
   standalone: true,
-  imports: [RouterLink, NgIf, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [RouterLink, NgIf, FormsModule, ReactiveFormsModule, RouterModule, HttpClientModule],
   templateUrl: './ingreso.component.html',
   styleUrl: './ingreso.component.css'
 })

@@ -9,11 +9,12 @@ import { DirectorService } from '../services/director.services';
 import { ActorService } from '../services/actor.services';
 import { GeneroService } from '../services/genero.services';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [ RouterModule, FormsModule, ReactiveFormsModule, CommonModule ],
+  imports: [ RouterModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })

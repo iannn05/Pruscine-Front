@@ -4,11 +4,12 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../services/user.services';
 import { FormBuilder } from '@angular/forms';
 import userModel from '../models/user.model';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [ RouterModule, FormsModule, ReactiveFormsModule ],
+  imports: [ RouterModule, FormsModule, ReactiveFormsModule, HttpClientModule ],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
