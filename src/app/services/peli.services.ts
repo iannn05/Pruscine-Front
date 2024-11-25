@@ -18,7 +18,7 @@ export class PeliService {
     })
   };
 
-  private BASE_URL = 'http://localhost:3000/pelicula';
+  private BASE_URL = 'http://localhost:8081/pelicula';
 
   constructor(private http: HttpClient) { }
 
