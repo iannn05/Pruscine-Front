@@ -19,7 +19,7 @@ export class AuthService {
     })
   };
 
-  private BASE_URL = 'http://localhost:3000/auth';
+  private BASE_URL = 'http://localhost:8081/auth';
 
   constructor(private http: HttpClient, private router: Router) { }
 
