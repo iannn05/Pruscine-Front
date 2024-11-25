@@ -15,6 +15,7 @@ export class GeneroService {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       'Accept': 'application/json',
+      'authorization': localStorage.getItem('token')!
     })
   };
 
@@ -32,15 +33,7 @@ export class GeneroService {
 
   addGenero(genero: any): Observable<void> {
     console.log(genero);
-    const httpoptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Accept': 'application/json',
-        'authorization': localStorage.getItem('token')!
-      })
-    };
-
-    return this.http.post<void>(`${this.BASE_URL}`, genero, this.httpOptions);
+    return this.http.post<void>(`${this.BASE_URL}`, {genero}, this.httpOptions);
   }
 
   deleteGenero(id: number): Observable<void> {
