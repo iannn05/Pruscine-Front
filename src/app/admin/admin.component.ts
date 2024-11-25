@@ -110,13 +110,8 @@ export class AdminComponent {
   }
 
   addGenero(formData: any){
-    const body ={
-      genero:{
-        nombre: formData.nombre
-      }
-    }
-
-    this.generoService.addGenero(body).subscribe();
+    console.log("segundo log: " + JSON.stringify(formData));
+    this.generoService.addGenero(formData).subscribe();
   }
 
   agregarPelicula(){
@@ -139,6 +134,7 @@ export class AdminComponent {
 
   agregarGenero(){
     const formData = this.generoForm.value;
+    console.log("primer log: " + JSON.stringify(formData));
     this.addGenero(formData);
     this.router.navigate(['/admin']);
   }

@@ -32,7 +32,7 @@ export class GeneroService {
   }
 
   addGenero(genero: any): Observable<void> {
-    console.log(genero);
+    console.log("tercer log: " + JSON.stringify(genero));
     return this.http.post<void>(`${this.BASE_URL}`, {genero}, this.httpOptions);
   }
 
