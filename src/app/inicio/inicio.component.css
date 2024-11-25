@@ -1,0 +1,58 @@
+/* Contenedor del carrusel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Ajusta al contenedor padre */
+    overflow: hidden;
+  }
+  
+  .carousel {
+    display: flex;
+    width: calc(200%);
+    animation: slide 25s infinite linear;
+  }
+  
+  .carousel img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+  
+  
+  /* Animación para el loop continuo */
+  @keyframes slide {
+    from {
+      transform: translateX(0); /* Inicio del carrusel */
+    }
+    to {
+      transform: translateX(-100%); /* Mueve todo el conjunto al final */
+    }
+  }
+  
+  /* Superposición con texto */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Oscurece el fondo para mejorar visibilidad */
+  }
+  
+  .overlay h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .overlay p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  

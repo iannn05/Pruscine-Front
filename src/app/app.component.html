@@ -1,23 +1,4 @@
-<head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<nav>
-  <div>
-    <a href="/">
-      <img src="/assets/logo.png" class="logo">
-    </a>
-  </div>
-  
-  <div class="navbar-menu">
-      <ul>
-          <li><a href="/reviews">Reseñar</a></li>
-          <li><a href="/top50">Explorar</a></li>
-          <li><a href="/perfil/1">Mi Perfil</a></li>
-          <li><a href="/ingreso">Ingresar</a></li>
-      </ul>
-    </div>
-</nav>
-
-<router-outlet></router-outlet>
+<main>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</main>
