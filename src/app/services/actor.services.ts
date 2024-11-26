@@ -32,7 +32,7 @@ export class ActorService {
 
   addActor(actor: any): Observable<void> {
     console.log(actor);
-    return this.http.post<void>(`${this.BASE_URL}`, actor, this.httpOptions);
+    return this.http.post<void>(`${this.BASE_URL}`, {actor}, this.httpOptions);
   }
 
   deleteActor(id: number): Observable<void> {

@@ -27,8 +27,10 @@ export class GeneroService {
     return this.http.get(`${this.BASE_URL}` + `/${id}`, this.httpOptions);
   }
 
-  getGeneros(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}`, this.httpOptions);
+  getGeneros(): Observable<any[]> {
+    const caca = this.http.get<any[]>(`${this.BASE_URL}`, this.httpOptions);
+    console.log(caca)
+    return caca;
   }
 
   addGenero(genero: any): Observable<void> {

@@ -32,7 +32,7 @@ export class DirectorService {
 
   addDirector(director: any): Observable<void> {
     console.log(director);
-    return this.http.post<void>(`${this.BASE_URL}`, director, this.httpOptions);
+    return this.http.post<void>(`${this.BASE_URL}`, {director}, this.httpOptions);
   }
 
   deleteDirector(id: number): Observable<void> {
