@@ -19,7 +19,7 @@ export class GeneroService {
     })
   };
 
-  private BASE_URL = 'http://localhost:8081/genero';
+  private BASE_URL = 'http://192.168.1.11:3000/genero';
 
   constructor(private http: HttpClient) { }
 
