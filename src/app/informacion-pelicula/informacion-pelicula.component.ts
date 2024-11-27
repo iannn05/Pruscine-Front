@@ -70,7 +70,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.peliGeneroService.getGeneros(+id).subscribe(
       (data) => {
         this.peliculaGeneros = data;
-        console.log(this.peliculaGeneros);
         this.peliculaGeneros.forEach((pg) => this.getGeneros(pg.generoIdgenero));
       },
       (error) => {
@@ -83,7 +82,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.peliActorService.getActores(+id).subscribe(
       (data) => {
         this.peliculaActores = data;
-        console.log(this.peliculaActores);
         this.peliculaActores.forEach((pg) => this.getActores(pg.actorIdactor));
       },
       (error) => {
@@ -96,7 +94,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.peliDirectorService.getDirectores(+id).subscribe(
       (data) => {
         this.peliculaDirectores = data;
-        console.log(this.peliculaDirectores);
         this.peliculaDirectores.forEach((pg) => this.getDirectores(pg.directorIddirector));
       },
       (error) => {
@@ -109,7 +106,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.resenaService.getReviews(+id).subscribe(
       (data) => {
         this.resenas = data;
-        console.log(this.resenas);
       },
       (error) => {
         console.error('Error al cargar los detalles de las reseñas:', error);
@@ -120,11 +116,9 @@ export class InformacionPeliculaComponent implements OnInit {
   getUsuarios() {
     this.userService.getUsuarios().subscribe(
       (data) => {
-        console.log('Datos de usuarios recibidos:', data);
         if (data && Array.isArray(data.users)) {
           this.usuarios = data.users;
         } else {
-          console.error('La propiedad "users" no es un array:', data);
           this.usuarios = [];
         }
       },
@@ -135,11 +129,7 @@ export class InformacionPeliculaComponent implements OnInit {
   }
 
   getUsuario(id: number): string {
-    console.log("id usuario " + id);
-    console.log('Usuarios disponibles:', this.usuarios);
-  
     const usuario = this.usuarios.find(u => u.idusuario === id);
-    console.log(usuario);
     return usuario ? usuario.nombre : 'Desconocido';
   }
 
@@ -147,7 +137,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.generoService.getOneGenero(+id).subscribe(
       (data) => {
         this.generos.push(data);
-        console.log(this.generos);
       },
       (error) => {
         console.error('Error al cargar los detalles del género:', error);
@@ -159,7 +148,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.actorService.getOneActor(+id).subscribe(
       (data) => {
         this.actores.push(data);
-        console.log(this.actores);
       },
       (error) => {
         console.error('Error al cargar los detalles del actor:', error);
@@ -171,7 +159,6 @@ export class InformacionPeliculaComponent implements OnInit {
     this.directorService.getOneDirector(+id).subscribe(
       (data) => {
         this.directores.push(data);
-        console.log(this.generos);
       },
       (error) => {
         console.error('Error al cargar los detalles del director:', error);
@@ -192,9 +179,13 @@ export class InformacionPeliculaComponent implements OnInit {
   }
 
   isAdmin(): boolean {
+    console.log("isAdmin");
     const token = localStorage.getItem('token');
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
+      
+      console.log(payload);
+      console.log(payload.rol);
       return payload.rol === 'true';
     }
     return false;
@@ -214,7 +205,6 @@ export class InformacionPeliculaComponent implements OnInit {
       this.resenaService.deleteReview(peliculaId, usuarioId).subscribe(
         () => {
           window.location.reload();
-          console.log('Reseña eliminada con éxito');
         },
         (error) => {
           console.error('Error al eliminar la reseña:', error);

@@ -21,7 +21,6 @@ export class UserService {
 
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
-      console.log(token);
       if (token) {
         headers = headers.set('Authorization', `Bearer ${token}`);
       }

@@ -70,15 +70,12 @@ export class AdminComponent implements OnInit {
 
     // Cargar datos desde el backend
     this.generoService.getGeneros().subscribe((data) => {
-      console.log('Generos recibidos:', data);
       this.generos = Array.isArray(data) ? data : [];
     });
     this.actorService.getActores().subscribe((data) => {
-      console.log('Actores recibidos:', data);
       this.actores = Array.isArray(data) ? data : [];
     });
     this.directorService.getDirectores().subscribe((data) => {
-      console.log('Productores recibidos:', data);
       this.directores = Array.isArray(data) ? data : [];
     });
     
@@ -126,7 +123,6 @@ export class AdminComponent implements OnInit {
   // Métodos para agregar datos
   agregarPelicula() {
     if (this.peliculaForm.valid) {
-      console.log('Película enviada:', this.peliculaForm.value);
       this.peliculaService.addPelicula(this.peliculaForm.value).subscribe(() => {
         window.location.reload();
       });
@@ -135,7 +131,6 @@ export class AdminComponent implements OnInit {
 
   agregarActor() {
     if (this.actorForm.valid) {
-      console.log('Actor enviado:', this.actorForm.value);
       this.actorService.addActor(this.actorForm.value).subscribe(() => {
         window.location.reload();
       });
@@ -144,7 +139,6 @@ export class AdminComponent implements OnInit {
 
   agregarDirector() {
     if (this.directorForm.valid) {
-      console.log('Director enviado:', this.directorForm.value);
       this.directorService.addDirector(this.directorForm.value).subscribe(() => {
         window.location.reload();
       });
@@ -153,7 +147,6 @@ export class AdminComponent implements OnInit {
 
   agregarGenero() {
     if (this.generoForm.valid) {
-      console.log('Género enviado:', this.generoForm.value);
       this.generoService.addGenero(this.generoForm.value).subscribe(() => {
         window.location.reload();
       });

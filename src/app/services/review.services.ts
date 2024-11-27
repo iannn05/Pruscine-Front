@@ -49,6 +49,7 @@ export class ReviewService {
 
   deleteReview(id_pelicula: number, id_usuario: number): Observable<void> {
     const body = { id_pelicula, id_usuario };
+    console.log(body);
     return this.http.delete<void>(`${this.BASE_URL}/reviews`, {
       body: body,
       headers: this.getHttpOptions().headers,

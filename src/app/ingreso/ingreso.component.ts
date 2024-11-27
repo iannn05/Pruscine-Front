@@ -31,7 +31,6 @@ export class IngresoComponent {
   })
 
   authUser(formData: any){
-    console.log(formData);
     const body ={
       'email': formData.email,
       'contrasenia': formData.contrasenia,
@@ -43,8 +42,6 @@ export class IngresoComponent {
   }
 
 login(){
-  console.log("llegue");
-  
   const formData = this.applyForm.value;
   this.authUser(formData);
   this.router.navigate(['/']);

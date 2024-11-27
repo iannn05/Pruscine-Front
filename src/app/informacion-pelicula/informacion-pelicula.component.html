@@ -15,7 +15,7 @@
             <p class="calificacion"><strong>Calificación:</strong> {{ resena.calificacion }}</p>
             <p class="comentario"><strong>Comentario:</strong> {{ resena.descripcion }}</p>
         </div>
-        <button *ngIf="isAdmin || isOwner(resena.usuario_idusuario)" (click)="deleteResena(pelicula.idpelicula, resena.usuario_idusuario)" class="btn-delete">
+        <button *ngIf="isAdmin() || isOwner(resena.usuario_idusuario)" (click)="deleteResena(pelicula.idpelicula, resena.usuario_idusuario)" class="btn-delete">
             Eliminar reseña
         </button>
     </div>
