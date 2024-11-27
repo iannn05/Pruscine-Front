@@ -128,7 +128,7 @@ export class AdminComponent implements OnInit {
     if (this.peliculaForm.valid) {
       console.log('Película enviada:', this.peliculaForm.value);
       this.peliculaService.addPelicula(this.peliculaForm.value).subscribe(() => {
-        this.router.navigate(['/admin']);
+        window.location.reload();
       });
     }
   }
@@ -137,7 +137,7 @@ export class AdminComponent implements OnInit {
     if (this.actorForm.valid) {
       console.log('Actor enviado:', this.actorForm.value);
       this.actorService.addActor(this.actorForm.value).subscribe(() => {
-        this.router.navigate(['/admin']);
+        window.location.reload();
       });
     }
   }
@@ -146,7 +146,7 @@ export class AdminComponent implements OnInit {
     if (this.directorForm.valid) {
       console.log('Director enviado:', this.directorForm.value);
       this.directorService.addDirector(this.directorForm.value).subscribe(() => {
-        this.router.navigate(['/admin']);
+        window.location.reload();
       });
     }
   }
@@ -155,7 +155,7 @@ export class AdminComponent implements OnInit {
     if (this.generoForm.valid) {
       console.log('Género enviado:', this.generoForm.value);
       this.generoService.addGenero(this.generoForm.value).subscribe(() => {
-        this.router.navigate(['/admin']);
+        window.location.reload();
       });
     }
   }
