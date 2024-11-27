@@ -38,3 +38,5 @@ export class ActorService {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`, this.getHttpOptions());
   }
 }
+
+}

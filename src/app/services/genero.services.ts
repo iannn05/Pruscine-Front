@@ -38,3 +38,4 @@ export class GeneroService {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`, this.getHttpOptions());
   }
 }
+
