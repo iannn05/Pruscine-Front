@@ -9,6 +9,8 @@ import { DirectorService } from '../services/director.services';
 import { PeliGeneroService } from '../services/peli.genero.services';
 import { PeliActorService } from '../services/peli.actor.services';
 import { PeliDirectorService } from '../services/peli.director.services';
+import { ReviewService } from '../services/review.services';
+import { UserService } from '../services/user.services';
 
 @Component({
   selector: 'app-informacion-pelicula',
@@ -25,6 +27,8 @@ export class InformacionPeliculaComponent implements OnInit {
   generos: any[] = [];
   actores: any[] = [];
   directores: any[] = [];
+  resenas: any[] = [];
+  usuarios: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +38,9 @@ export class InformacionPeliculaComponent implements OnInit {
     private directorService: DirectorService,
     private peliGeneroService: PeliGeneroService,
     private peliActorService: PeliActorService,
-    private peliDirectorService: PeliDirectorService
+    private peliDirectorService: PeliDirectorService,
+    private resenaService: ReviewService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +50,8 @@ export class InformacionPeliculaComponent implements OnInit {
       this.getPeliculaGenero(+id);
       this.getPeliculaActor(+id);
       this.getPeliculaDirector(+id);
+      this.getResenas(+id);
+      this.getUsuarios();
     }
   }
 
@@ -97,6 +105,44 @@ export class InformacionPeliculaComponent implements OnInit {
     );
   }
 
+  getResenas(id: number) {
+    this.resenaService.getReviews(+id).subscribe(
+      (data) => {
+        this.resenas = data;
+        console.log(this.resenas);
+      },
+      (error) => {
+        console.error('Error al cargar los detalles de las reseñas:', error);
+      }
+    );
+  }
+
+  getUsuarios() {
+    this.userService.getUsuarios().subscribe(
+      (data) => {
+        console.log('Datos de usuarios recibidos:', data);
+        if (data && Array.isArray(data.users)) {
+          this.usuarios = data.users;
+        } else {
+          console.error('La propiedad "users" no es un array:', data);
+          this.usuarios = [];
+        }
+      },
+      (error) => {
+        console.error('Error al cargar los detalles de los usuarios:', error);
+      }
+    );
+  }
+
+  getUsuario(id: number): string {
+    console.log("id usuario " + id);
+    console.log('Usuarios disponibles:', this.usuarios);
+  
+    const usuario = this.usuarios.find(u => u.idusuario === id);
+    console.log(usuario);
+    return usuario ? usuario.nombre : 'Desconocido';
+  }
+
   getGeneros(id: number) {
     this.generoService.getOneGenero(+id).subscribe(
       (data) => {
@@ -143,5 +189,37 @@ export class InformacionPeliculaComponent implements OnInit {
 
   get nombresDirectores(): string {
     return this.directores.map(g => g.nombre).join(', ');
+  }
+
+  isAdmin(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.rol === 'true';
+    }
+    return false;
+  }
+
+  isOwner(id: number): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.idusuario === id;
+    }
+    return false;
+  }
+
+  deleteResena(peliculaId: number, usuarioId: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta reseña?')) {
+      this.resenaService.deleteReview(peliculaId, usuarioId).subscribe(
+        () => {
+          window.location.reload();
+          console.log('Reseña eliminada con éxito');
+        },
+        (error) => {
+          console.error('Error al eliminar la reseña:', error);
+        }
+      );
+    }
   }
 }

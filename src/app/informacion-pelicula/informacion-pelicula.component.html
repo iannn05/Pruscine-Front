@@ -6,4 +6,17 @@
     <p><strong>Actores:</strong> {{ nombresActores }}</p>
     <p><strong>Directores:</strong> {{ nombresDirectores }}</p>
 </div>
-  
+
+<div>
+    <h1 class="review-title">Reseñas:</h1>
+    <div *ngFor="let resena of resenas">
+        <div class="reseña">
+            <p class="usuario"><strong>Usuario:</strong> {{ getUsuario(resena.usuario_idusuario) }}</p>
+            <p class="calificacion"><strong>Calificación:</strong> {{ resena.calificacion }}</p>
+            <p class="comentario"><strong>Comentario:</strong> {{ resena.descripcion }}</p>
+        </div>
+        <button *ngIf="isAdmin || isOwner(resena.usuario_idusuario)" (click)="deleteResena(pelicula.idpelicula, resena.usuario_idusuario)" class="btn-delete">
+            Eliminar reseña
+        </button>
+    </div>
+</div>

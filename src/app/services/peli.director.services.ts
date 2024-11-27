@@ -17,8 +17,8 @@ export class PeliDirectorService {
       'Accept': 'application/json',
     })
   };
-
-  private BASE_URL = 'http://192.168.1.11:3000/peliculaDirector';
+  // en vez de localhost poner la ip de la maquina
+  private BASE_URL = 'http://localhost:3000/peliculaDirector';
 
   constructor(private http: HttpClient) { }
 

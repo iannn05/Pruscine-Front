@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GeneroService {
-  private BASE_URL = 'http://192.168.1.11:3000/genero';
+  // en vez de localhost poner la ip de la maquina
+  private BASE_URL = 'http://localhost:3000/genero';
 
   constructor(private http: HttpClient) {}
 

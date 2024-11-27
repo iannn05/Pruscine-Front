@@ -21,8 +21,8 @@ export class DirectorService {
       })
     };
   }
-
-  private BASE_URL = 'http://192.168.1.11:3000/director';
+  // en vez de localhost poner la ip de la maquina
+  private BASE_URL = 'http://localhost:3000/director';
 
   constructor(private http: HttpClient) { }
 
