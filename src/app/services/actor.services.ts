@@ -18,7 +18,7 @@ export class ActorService {
     })
   };
 
-  private BASE_URL = 'http://localhost:8081/actor';
+  private BASE_URL = 'http://192.168.1.11:3000/actor';
 
   constructor(private http: HttpClient) { }
 
