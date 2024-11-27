@@ -3,7 +3,8 @@
     <img src="/assets/logo.png" class="logo" alt="Logo de Pruscine+">
   </a>
   <ul>
-    <li><a [routerLink]="['/reviews']">Reseñar</a></li>
+    <li><a *ngIf="authService.loggedIn()" [routerLink]="['/admin']">Admin</a></li>
+    <li><a *ngIf="authService.loggedIn()" [routerLink]="['/reviews']">Reseñar</a></li>
     <li><a [routerLink]="['/top50']">Explorar</a></li>
     <li><a *ngIf="authService.loggedIn()" [routerLink]="['/perfil']">Mi Perfil</a></li>
     <li><a *ngIf="!authService.loggedIn()" [routerLink]="['/ingreso']">Ingresar</a></li>

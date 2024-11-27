@@ -1,1 +1,43 @@
-<p>reviews works!</p>
+<form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+  <div class="reseña-container">
+    <!-- Selector de Película -->
+  <div *ngIf="filteredPeliculas.length > 0">
+      <label for="movie">Seleccionar película</label>
+      <select formControlName="movie">
+        <option *ngFor="let pelicula of filteredPeliculas" [value]="pelicula.idpelicula">{{ pelicula.nombre }}</option>
+      </select>
+    </div>
+    
+    <div>
+      <label for="movie">Película</label>
+      <input
+        id="movie"
+        type="text"
+        formControlName="movie"
+        [(ngModel)]="searchQuery"
+        (input)="filterPeliculas()"
+        placeholder="Buscar película..."
+      />
+    </div>
+
+    <div>
+      <label for="rating">Calificación</label>
+      <div class="star-rating">
+        <span *ngFor="let star of starsArray" (click)="selectRating(star)">
+          {{ star <= reviewForm.get('rating')?.value ? '★' : '☆' }}
+        </span>
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Descripción</label>
+      <textarea id="description" formControlName="description" rows="4" placeholder="Escribe tu reseña"></textarea>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="reviewForm.invalid">Enviar Reseña</button>
+    </div>
+  </div>
+</form>
+
+

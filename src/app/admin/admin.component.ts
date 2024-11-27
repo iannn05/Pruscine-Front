@@ -1,32 +1,164 @@
-import { Component, NgModule, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, NgModule, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UserService } from '../services/user.services';
-import { FormBuilder } from '@angular/forms';
-import userModel from '../models/user.model';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { PeliService } from '../services/peli.services';
 import { DirectorService } from '../services/director.services';
 import { ActorService } from '../services/actor.services';
 import { GeneroService } from '../services/genero.services';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [ RouterModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule ],
+  imports: [RouterModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrl: './admin.component.css',
 })
-export class AdminComponent {
-  constructor(private router: Router) {
-    
-  }
-
+export class AdminComponent implements OnInit {
   showPeliculaForm: boolean = false;
   showActorForm: boolean = false;
   showDirectorForm: boolean = false;
   showGeneroForm: boolean = false;
+
+  // Formularios
+  peliculaForm!: FormGroup;
+  actorForm!: FormGroup;
+  directorForm!: FormGroup;
+  generoForm!: FormGroup;
+
+  // Datos dinámicos
+  generos: any[] = [];
+  actores: any[] = [];
+  directores: any[] = [];
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private peliculaService: PeliService,
+    private generoService: GeneroService,
+    private actorService: ActorService,
+    private directorService: DirectorService
+  ) {}
+
+  ngOnInit(): void {
+    // Inicializar formularios
+    this.peliculaForm = this.fb.group({
+      nombre: ['', Validators.required],
+      anioPublicado: ['', Validators.required],
+      pais: ['', Validators.required],
+      generos: this.fb.array([]),
+      actores: this.fb.array([]),
+      directores: this.fb.array([]),
+    });
+
+    this.actorForm = this.fb.group({
+      nombre: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
+      descripcion: ['', Validators.required],
+    });
+
+    this.directorForm = this.fb.group({
+      nombre: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
+      descripcion: ['', Validators.required],
+    });
+
+    this.generoForm = this.fb.group({
+      nombre: ['', Validators.required],
+    });
+
+    // Cargar datos desde el backend
+    this.generoService.getGeneros().subscribe((data) => {
+      console.log('Generos recibidos:', data);
+      this.generos = Array.isArray(data) ? data : [];
+    });
+    this.actorService.getActores().subscribe((data) => {
+      console.log('Actores recibidos:', data);
+      this.actores = Array.isArray(data) ? data : [];
+    });
+    this.directorService.getDirectores().subscribe((data) => {
+      console.log('Productores recibidos:', data);
+      this.directores = Array.isArray(data) ? data : [];
+    });
+    
+  }
+
+  // Getters para los FormArray dinámicos
+  get generosArray(): FormArray {
+    return this.peliculaForm.get('generos') as FormArray;
+  }
+
+  get actoresArray(): FormArray {
+    return this.peliculaForm.get('actores') as FormArray;
+  }
+
+  get directoresArray(): FormArray {
+    return this.peliculaForm.get('directores') as FormArray;
+  }
+
+  // Métodos para agregar campos dinámicos
+  addGenero() {
+    this.generosArray.push(this.fb.control('', Validators.required));
+  }
+
+  addActor() {
+    this.actoresArray.push(this.fb.control('', Validators.required));
+  }
+
+  addDirector() {
+    this.directoresArray.push(this.fb.control('', Validators.required));
+  }
+
+  // Métodos para eliminar campos dinámicos
+  removeGenero(index: number) {
+    this.generosArray.removeAt(index);
+  }
+
+  removeActor(index: number) {
+    this.actoresArray.removeAt(index);
+  }
+
+  removeDirector(index: number) {
+    this.directoresArray.removeAt(index);
+  }
+
+  // Métodos para agregar datos
+  agregarPelicula() {
+    if (this.peliculaForm.valid) {
+      console.log('Película enviada:', this.peliculaForm.value);
+      this.peliculaService.addPelicula(this.peliculaForm.value).subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
+
+  agregarActor() {
+    if (this.actorForm.valid) {
+      console.log('Actor enviado:', this.actorForm.value);
+      this.actorService.addActor(this.actorForm.value).subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
+
+  agregarDirector() {
+    if (this.directorForm.valid) {
+      console.log('Director enviado:', this.directorForm.value);
+      this.directorService.addDirector(this.directorForm.value).subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
+
+  agregarGenero() {
+    if (this.generoForm.valid) {
+      console.log('Género enviado:', this.generoForm.value);
+      this.generoService.addGenero(this.generoForm.value).subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
 
   toggleForm(form: string) {
     switch (form) {
@@ -43,99 +175,5 @@ export class AdminComponent {
         this.showGeneroForm = !this.showGeneroForm;
         break;
     }
-  }
-
-  peliculaService: PeliService = inject(PeliService);
-  actorService: ActorService = inject(ActorService);
-  directorService: DirectorService = inject(DirectorService);
-  generoService: GeneroService = inject(GeneroService);
-  
-
-  peliculaForm = new FormGroup({
-    nombre: new FormControl(''),
-    anioPublicado: new FormControl(''),
-    pais: new FormControl(''),
-  })
-
-  actorForm = new FormGroup({
-    nombre: new FormControl(''),
-    fechaNacimiento: new FormControl(''),
-    descripcion: new FormControl('')
-  })
-
-  directorForm = new FormGroup({
-    nombre: new FormControl(''),
-    fechaNacimiento: new FormControl(''),
-    descripcion: new FormControl('')
-  })
-
-  generoForm = new FormGroup({
-    nombre: new FormControl(''),
-  })
-
-  addPelicula(formData: any){
-    const body ={
-      pelicula:{
-        nombre: formData.nombre,
-        anioPublicado: formData.anioPublicado,
-        pais: formData.pais,
-      }
-    }
-
-    this.peliculaService.addPelicula(body).subscribe();
-  }
-
-  addActor(formData: any){
-    const body ={
-      actor:{
-        nombre: formData.nombre,
-        fechaNacimiento: formData.fechaNacimiento,
-        descripcion: formData.descripcion
-      }
-    }
-
-    this.actorService.addActor(body).subscribe();
-  }
-
-  addDirector(formData: any){
-    const body ={
-      director:{
-        nombre: formData.nombre,
-        fechaNacimiento: formData.fechaNacimiento,
-        descripcion: formData.descripcion
-      }
-    }
-
-    this.directorService.addDirector(body).subscribe();
-  }
-
-  addGenero(formData: any){
-    console.log("segundo log: " + JSON.stringify(formData));
-    this.generoService.addGenero(formData).subscribe();
-  }
-
-  agregarPelicula(){
-    const formData = this.peliculaForm.value;
-    this.addPelicula(formData);
-    this.router.navigate(['/admin']);
-  }
-
-  agregarActor(){
-    const formData = this.actorForm.value;
-    this.addActor(formData);
-    this.router.navigate(['/admin']);
-  }
-
-  agregarDirector(){
-    const formData = this.directorForm.value;
-    this.addDirector(formData);
-    this.router.navigate(['/admin']);
-  }
-
-  agregarGenero(){
-    const formData = this.generoForm.value;
-    console.log("primer log: " + JSON.stringify(formData));
-    this.addGenero(formData);
-    this.router.navigate(['/admin']);
   }
 }
