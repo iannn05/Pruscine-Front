@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReviewService } from '../services/review.services';
+import { AuthService } from '../services/auth.services';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class ReviewsComponent implements OnInit {
   starsArray: number[] = [1, 2, 3, 4, 5];
   searchQuery: string = '';
 
-  constructor(private fb: FormBuilder, private peliService: PeliService, private reviewService: ReviewService) {
+  constructor(private fb: FormBuilder, private peliService: PeliService, private reviewService: ReviewService, private authService: AuthService) {
     this.reviewForm = this.fb.group({
       movie: ['', Validators.required],
       rating: [0, Validators.min(1)],
@@ -49,10 +50,12 @@ export class ReviewsComponent implements OnInit {
   submitReview(): void {
     console.log('Estado del formulario:', this.reviewForm.status);
     console.log('Datos del formulario:', this.reviewForm.value);
+    const userData = this.authService.getData();
+    console.log('Datos del usuario:' + userData.idusuario);
 
     if (this.reviewForm.valid) {
       console.log('Reseña enviada:', this.reviewForm.value);
-      this.reviewService.addReview(this.reviewForm.value).subscribe(() => {
+      this.reviewService.addReview(this.reviewForm.value, userData.idusuario).subscribe(() => {
         window.location.reload();
       });
     }

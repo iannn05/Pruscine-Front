@@ -15,10 +15,11 @@ export class ReviewService {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       'Accept': 'application/json',
+      'authorization': localStorage.getItem('token')!
     })
   };
 
-  private BASE_URL = 'http://localhost:3000/resena';
+  private BASE_URL = 'http://192.168.1.11:3000/resena';
 
   constructor(private http: HttpClient) { }
 
@@ -30,9 +31,11 @@ export class ReviewService {
     return this.http.get(`${this.BASE_URL}`, this.httpOptions);
   }
 
-  addReview(review: any): Observable<void> {
-    console.log(review);
-    return this.http.post<void>(`${this.BASE_URL}`, review, this.httpOptions);
+  addReview(review: any, idusuario: number): Observable<void> {
+    const body = { ...review, idusuario }; // Combina el review con el idusuario
+    console.log("review y usuario");
+    console.log(body);
+    return this.http.post<void>(`${this.BASE_URL}`, body, this.httpOptions);
   }
 
   deleteReview(id: number): Observable<void> {
