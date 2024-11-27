@@ -1,42 +1,137 @@
-/* src/app/top50/top50.component.css */
 .top50-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Asegura que haya 4 columnas por fila */
+  gap: 16px;
+  padding: 16px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 8px;
+  text-align: center;
+}
+
+.card-content h3 {
+  margin: 8px 0;
+  font-size: 1.2rem;
+}
+
+.card-content p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.search-container {
+  padding-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.search-input {
+  padding: 8px;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.top50-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 8px;
+  text-align: center;
+}
+
+.card-content h3 {
+  margin: 8px 0;
+  font-size: 1.2rem;
+}
+
+.card-content p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.pagination-controls button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+span {
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  .top50-container {
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
   }
-  
-  .card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .top50-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
   }
-  
-  .card:hover {
-    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .top50-container {
+      grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
   }
-  
-  .card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .card-content {
-    padding: 8px;
-    text-align: center;
-  }
-  
-  .card-content h3 {
-    margin: 8px 0;
-    font-size: 1.2rem;
-  }
-  
-  .card-content p {
-    margin: 4px 0;
-    color: #555;
-    font-size: 0.9rem;
-  }
-  
+}

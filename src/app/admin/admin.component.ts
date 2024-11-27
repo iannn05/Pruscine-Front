@@ -70,8 +70,8 @@ export class AdminComponent implements OnInit {
 
     // Cargar datos desde el backend
     this.generoService.getGeneros().subscribe((data) => {
-      console.log('Generos recibidos:', data); // Verifica qué tipo de datos estás recibiendo
-      this.generos = Array.isArray(data) ? data : []; // Asegúrate de que sea un array
+      console.log('Generos recibidos:', data);
+      this.generos = Array.isArray(data) ? data : [];
     });
     this.actorService.getActores().subscribe((data) => {
       console.log('Actores recibidos:', data);

@@ -1,16 +1,29 @@
-<!-- src/app/top50/top50.component.html -->
+<div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery" 
+      (ngModelChange)="filterPeliculas()"
+      placeholder="Buscar película por nombre..." 
+      class="search-input" 
+    />
+</div>
+
 <div class="top50-container">
-    <div *ngFor="let pelicula of peliculas" class="card">
+    <div *ngFor="let pelicula of displayedPeliculas" class="card">
         <!-- 
         <img [src]="pelicula.imagenUrl || 'default-image.jpg'" alt="{{ pelicula.nombre }}" class="card-img" />
         -->
       <div class="card-content">
         <h3>{{ pelicula.nombre }}</h3>
-        <p>{{ pelicula.anioPublicado }}</p>
-        <p>{{ pelicula.pais }}</p>
         <button *ngIf="pelicula.idpelicula" [routerLink]="['/informacion-pelicula', pelicula.idpelicula]">
             Más información
           </button>
       </div>
     </div>
+</div>
+
+<div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= peliculas.length">Siguiente</button>
 </div>

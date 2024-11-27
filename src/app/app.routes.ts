@@ -21,12 +21,12 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path:'perfil', component: PerfilComponent },
+            { path: 'reviews', component: ReviewsComponent },
         ],
     },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: 'inicio', component: InicioComponent },
     { path: 'top50', component: Top50Component },
-    { path: 'reviews', component: ReviewsComponent },
     { path: 'ingreso', component: IngresoComponent },
     { path: 'registro', component: RegistroComponent },
     { path: 'informacion-pelicula/:id', component: InformacionPeliculaComponent },

@@ -10,10 +10,6 @@ export class GeneroService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Genera las opciones de encabezados dinámicamente,
-   * asegurándose de que `localStorage` esté disponible.
-   */
   private getHttpOptions() {
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     return {
