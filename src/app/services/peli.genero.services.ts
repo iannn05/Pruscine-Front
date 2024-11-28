@@ -18,7 +18,7 @@ export class PeliGeneroService {
     })
   };
 
-  private BASE_URL = 'http://192.168.1.11:3000/peliculaGenero';
+  private BASE_URL = 'http://172.18.0.1:3000/peliculaGenero';
 
   constructor(private http: HttpClient) { }
 
