@@ -9,6 +9,8 @@ import { AuthGuard } from './services/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { AdminGuard } from './services/admin.guard';
 import { InformacionPeliculaComponent } from './informacion-pelicula/informacion-pelicula.component';
+import { ListasComponent } from './listas/listas.component';
+import { ListaCrearComponent } from './lista-crear/lista-crear.component';
 
 export const routes: Routes = [
     {
@@ -22,6 +24,9 @@ export const routes: Routes = [
         children: [
             { path:'perfil', component: PerfilComponent },
             { path: 'reviews', component: ReviewsComponent },
+            { path: 'listas', component: ListasComponent },
+            { path: 'lista-crear', component: ListaCrearComponent},
+            { path: 'informacion-pelicula/:id', component: InformacionPeliculaComponent },
         ],
     },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
@@ -29,5 +34,4 @@ export const routes: Routes = [
     { path: 'top50', component: Top50Component },
     { path: 'ingreso', component: IngresoComponent },
     { path: 'registro', component: RegistroComponent },
-    { path: 'informacion-pelicula/:id', component: InformacionPeliculaComponent },
 ];

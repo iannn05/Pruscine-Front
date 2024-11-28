@@ -4,6 +4,7 @@
   </a>
   <ul>
     <li><a *ngIf="authService.loggedIn()" [routerLink]="['/admin']">Admin</a></li>
+    <li><a [routerLink]="['/listas']">Listas</a></li>
     <li><a *ngIf="authService.loggedIn()" [routerLink]="['/reviews']">Reseñar</a></li>
     <li><a [routerLink]="['/top50']">Explorar</a></li>
     <li><a *ngIf="authService.loggedIn()" [routerLink]="['/perfil']">Mi Perfil</a></li>
