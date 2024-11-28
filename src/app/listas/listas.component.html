@@ -1,1 +1,28 @@
 <a *ngIf="authService.loggedIn()" [routerLink]="['/lista-crear']">Crear lista</a>
+
+<div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery" 
+      (ngModelChange)="filterListas()"
+      placeholder="Buscar listas por nombre..." 
+      class="search-input" 
+    />
+  </div>
+
+<div class="top50-container">
+    <div *ngFor="let lista of displayedListas" class="card">
+      <div class="card-content">
+        <h3>{{ lista.nombre }}</h3>
+        <button *ngIf="lista.idlista" [routerLink]="['/informacion-lista', lista.idlista]">
+            Más información
+          </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= listas.length">Siguiente</button>
+  </div>

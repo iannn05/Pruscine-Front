@@ -18,7 +18,7 @@ export class PeliActorService {
     })
   };
   // en vez de localhost poner la ip de la maquina
-  private BASE_URL = 'http://localhost:3000/peliculaActor';
+  private BASE_URL = 'http://172.18.0.1:3000/peliculaActor';
 
   constructor(private http: HttpClient) { }
 

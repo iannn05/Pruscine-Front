@@ -11,6 +11,7 @@ import { AdminGuard } from './services/admin.guard';
 import { InformacionPeliculaComponent } from './informacion-pelicula/informacion-pelicula.component';
 import { ListasComponent } from './listas/listas.component';
 import { ListaCrearComponent } from './lista-crear/lista-crear.component';
+import { InformacionListaComponent } from './informacion-lista/informacion-lista.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +28,7 @@ export const routes: Routes = [
             { path: 'listas', component: ListasComponent },
             { path: 'lista-crear', component: ListaCrearComponent},
             { path: 'informacion-pelicula/:id', component: InformacionPeliculaComponent },
+            { path: 'informacion-lista/:id', component: InformacionListaComponent },
         ],
     },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },

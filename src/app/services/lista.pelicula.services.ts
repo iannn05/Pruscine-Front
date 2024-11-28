@@ -9,7 +9,7 @@ import { IUser } from '../models/user.model';
   providedIn: 'root'
 })
 
-export class PeliDirectorService {
+export class ListaPeliculaService {
 
   readonly httpOptions = {
     headers: new HttpHeaders({
@@ -18,11 +18,11 @@ export class PeliDirectorService {
     })
   };
   // en vez de localhost poner la ip de la maquina
-  private BASE_URL = 'http://172.18.0.1:3000/peliculaDirector';
+  private BASE_URL = 'http://172.18.0.1:3000/listaPelicula';
 
   constructor(private http: HttpClient) { }
 
-  getDirectores(id: number): Observable<any> {
+  getPeliculas(id: number): Observable<any> {
     return this.http.get(`${this.BASE_URL}` + `/${id}`, this.httpOptions);
   }
 
