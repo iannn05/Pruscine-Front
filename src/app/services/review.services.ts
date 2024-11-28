@@ -19,7 +19,7 @@ export class ReviewService {
     })
   };
 
-  private BASE_URL = 'http://192.168.1.11:3000/resena';
+  private BASE_URL = 'http://172.18.0.1:3000/resena';
 
   constructor(private http: HttpClient) { }
 
