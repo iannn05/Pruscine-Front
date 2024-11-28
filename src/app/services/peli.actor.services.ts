@@ -18,7 +18,7 @@ export class PeliActorService {
     })
   };
 
-  private BASE_URL = 'http://192.168.1.11:3000/peliculaActor';
+  private BASE_URL = 'http://172.18.0.1:3000/peliculaActor';
 
   constructor(private http: HttpClient) { }
 
