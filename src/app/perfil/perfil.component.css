@@ -1,124 +1,141 @@
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Cabecera */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e; /* Fondo oscuro de la cabecera */
+  padding: 10px;
+  border-bottom: 2px solid #333; /* Borde oscuro */
+}
+
+.head h2 {
+  margin: 0;
+  color: #e53935; /* Acento rojo en el título */
+}
+
+.head button {
+  background-color: #e53935; /* Rojo */
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.head button:hover {
+  background-color: #ff5252; /* Rojo más claro al pasar el cursor */
+}
+
+/* Sección de formularios */
+section {
+  padding: 20px;
+}
+
+/* Formulario */
+.form {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #333; /* Fondo oscuro en el formulario */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+label {
+  color: #ddd; /* Texto claro */
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #444; /* Borde oscuro */
+  border-radius: 4px;
+  background-color: #222; /* Fondo oscuro en inputs */
+  color: #fff; /* Texto blanco */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus {
+  border-color: #e53935; /* Borde rojo al enfocar */
+}
+
+button {
+  background-color: #e53935; /* Rojo */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff5252; /* Rojo más claro al pasar el cursor */
+}
+
+button#eliminarPerfil {
+  background-color: #dc3545; /* Rojo oscuro para eliminar */
+}
+
+button#eliminarPerfil:hover {
+  background-color: #c82333; /* Rojo más oscuro al pasar el cursor */
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
   .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-bottom: 2px solid #ddd;
+      flex-direction: column;
+      align-items: flex-start;
   }
-  
-  .head h2 {
-    margin: 0;
-  }
-  
+
   .head button {
-    background-color: #fda500;
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
   }
-  
-  .head button:hover {
-    background-color: #835a01;
-  }
-  
-  section {
-    padding: 20px;
-  }
-  
+
   .form {
-    max-width: 500px;
-    margin: 0 auto;
+      width: 100%;
   }
-  
-  label {
-    color: #ddd;
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .head h2 {
+      font-size: 18px;
   }
-  
+
+  .head button {
+      font-size: 14px;
+      padding: 8px 10px;
+  }
+
   input[type="text"],
   input[type="email"],
   input[type="password"],
   input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #e99700;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-right: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  button#eliminarPerfil {
-    background-color: #dc3545;
-  }
-  
-  button#eliminarPerfil:hover {
-    background-color: #c82333;
-  }
-  
-  /* Estilos responsive */
-  @media (max-width: 768px) {
-    .head {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .head button {
-      margin-top: 10px;
-      width: 100%;
-    }
-  
-    .form {
-      width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .head h2 {
-      font-size: 18px;
-    }
-  
-    .head button {
-      font-size: 14px;
-      padding: 8px 10px;
-    }
-  
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="date"] {
       padding: 8px;
-    }
-  
-    button {
+  }
+
+  button {
       padding: 8px 10px;
       font-size: 14px;
-    }
   }
-  
+}

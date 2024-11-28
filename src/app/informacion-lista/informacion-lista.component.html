@@ -6,7 +6,7 @@
     <h1>Peliculas:</h1>
     <div *ngFor="let pelicula of peliculas">
         <div class="reseña">
-            <p class="pelicula"><strong>Nombre:</strong> {{ pelicula.nombre }}</p>
+            <p ><strong>Nombre:</strong> {{ pelicula.nombre }}</p>
             <button 
                 *ngIf="isAdmin() || isOwner(lista.idusuario)" 
                 (click)="deleteLista(lista.idlista)" 

@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PeliService } from '../services/peli.services';
 import { ListaService } from '../services/lista.services';
 import { ListaPeliculaService } from '../services/lista.pelicula.services';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -18,19 +19,20 @@ import { ListaPeliculaService } from '../services/lista.pelicula.services';
 export class InformacionListaComponent implements OnInit {
 
   lista: any = null;
-  peliculas: any = [];
-  listaPeliculas: any = [];
+  peliculas: any[] = [];
+  listaPeliculas: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private listaService: ListaService,
-    private listaPeliculaService: ListaPeliculaService
+    private listaPeliculaService: ListaPeliculaService,
+    private peliService: PeliService
     ) {}
 
     ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
-        this.getLista(+id);
+        this.getListaPelicula(+id);
       }
     }
   
@@ -46,10 +48,27 @@ export class InformacionListaComponent implements OnInit {
     }
 
     getListaPelicula(id: number) {
-      this.listaPeliculaService.getPeliculas(+id).subscribe(
-        (data) => {
-          this.listaPeliculas = data;
-          this.listaPeliculas.forEach((pg: { peliculaIdpelicula: number; }) => this.getListaPelicula(pg.peliculaIdpelicula));
+      console.log("getListaPelicula " + id);
+      this.listaPeliculaService.getPeliculas(id).subscribe(
+        (response) => {
+          // Verifica la estructura de la respuesta
+          console.log("Respuesta de la API:", JSON.stringify(response));  // Imprime la respuesta completa
+    
+          // Asigna la respuesta a listaPeliculas
+          this.listaPeliculas = response;
+    
+          // Verifica si la respuesta es un array antes de iterar
+          if (Array.isArray(this.listaPeliculas)) {
+            console.log("listaPeliculas:", JSON.stringify(this.listaPeliculas));
+            
+            // Itera sobre la lista y obtiene las películas individuales
+            this.listaPeliculas.forEach((pg: { peliculaIdpelicula: number; }) => {
+              console.log("Obteniendo película con id:", pg.peliculaIdpelicula);
+              this.getPelicula(pg.peliculaIdpelicula);  // Llama a getPeliculas para cada ID de película
+            });
+          } else {
+            console.error("La respuesta no es un array válido.");
+          }
         },
         (error) => {
           console.error('Error al cargar las peliculas:', error);
@@ -57,6 +76,22 @@ export class InformacionListaComponent implements OnInit {
       );
     }
   
+    getPelicula(id: number) {
+      console.log("getPelicula " + id);
+      this.peliService.getOnePelicula(+id).subscribe(
+        (data) => {
+          console.log(data);
+          this.peliculas.push(data);
+          // Imprimir cada película de manera más legible
+          console.log("peliculas:", this.peliculas);
+        },
+        (error) => {
+          console.error('Error al cargar los detalles de la película:', error);
+        }
+      );
+    }
+    
+
     isAdmin(): boolean {
       console.log("isAdmin");
       const token = localStorage.getItem('token');

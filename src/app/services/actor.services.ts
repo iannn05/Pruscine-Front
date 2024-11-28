@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class ActorService {
   // en vez de localhost poner la ip de la maquina
-  private BASE_URL = 'http://172.18.0.1/:3000/actor';
+  private BASE_URL = 'http://localhost:3000/actor';
 
   constructor(private http: HttpClient) {}
 
