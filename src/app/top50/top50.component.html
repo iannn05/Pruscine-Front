@@ -1,29 +1,29 @@
 <div class="search-container">
-    <input 
-      type="text" 
-      [(ngModel)]="searchQuery" 
-      (ngModelChange)="filterPeliculas()"
-      placeholder="Buscar película por nombre..." 
-      class="search-input" 
-    />
+  <input 
+    type="text" 
+    [(ngModel)]="searchQuery" 
+    (ngModelChange)="filterPeliculas()"
+    placeholder="Buscar película por nombre..." 
+    class="search-input" 
+  />
 </div>
 
 <div class="top50-container">
-    <div *ngFor="let pelicula of displayedPeliculas" class="card">
-        <!-- 
-        <img [src]="pelicula.imagenUrl || 'default-image.jpg'" alt="{{ pelicula.nombre }}" class="card-img" />
-        -->
-      <div class="card-content">
-        <h3>{{ pelicula.nombre }}</h3>
-        <button *ngIf="pelicula.idpelicula" [routerLink]="['/informacion-pelicula', pelicula.idpelicula]">
-            Más información
-          </button>
-      </div>
+  <div *ngFor="let pelicula of displayedPeliculas" class="card">
+      <!-- 
+      <img [src]="pelicula.imagenUrl || 'default-image.jpg'" alt="{{ pelicula.nombre }}" class="card-img" />
+      -->
+    <div class="card-content">
+      <h3>{{ pelicula.nombre }}</h3>
+      <button *ngIf="pelicula.idpelicula" [routerLink]="['/informacion-pelicula', pelicula.idpelicula]">
+          Más información
+        </button>
     </div>
+  </div>
 </div>
 
 <div class="pagination-controls">
-    <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
-    <span>Página {{ currentPage }}</span>
-    <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= peliculas.length">Siguiente</button>
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+  <span>Página {{ currentPage }}</span>
+  <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= peliculas.length">Siguiente</button>
 </div>

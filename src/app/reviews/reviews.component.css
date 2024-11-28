@@ -4,16 +4,16 @@ form {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #222; /* Fondo oscuro */
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 label {
   font-weight: bold;
   margin-bottom: 8px;
   display: block;
-  color: #333;
+  color: #fff; /* Texto claro */
 }
 
 input,
@@ -22,19 +22,21 @@ textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #444; /* Borde oscuro */
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 16px;
+  background-color: #333; /* Fondo más oscuro */
+  color: #fff; /* Texto claro */
 }
 
 input[type="text"],
 textarea {
-  background-color: #f9f9f9;
+  background-color: #333; /* Consistencia con inputs */
 }
 
 button {
-  background-color: #f0b537;
+  background-color: #e50914; /* Rojo Netflix */
   color: white;
   padding: 10px 15px;
   font-size: 16px;
@@ -42,14 +44,15 @@ button {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:disabled {
-  background-color: #ddd;
+  background-color: #888; /* Deshabilitado */
 }
 
 button:hover:not(:disabled) {
-  background-color: #b49130;
+  background-color: #b20710; /* Rojo más oscuro al pasar */
 }
 
 /* Estilos para las estrellas */
@@ -59,7 +62,7 @@ button:hover:not(:disabled) {
 }
 
 .star-rating span {
-  color: #ff9800; /* Color de las estrellas */
+  color: #e50914; /* Rojo para las estrellas */
 }
 
 /* Estilo del contenedor del selector de películas */

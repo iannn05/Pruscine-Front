@@ -153,6 +153,8 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  
+
   toggleForm(form: string) {
     switch (form) {
       case 'pelicula':

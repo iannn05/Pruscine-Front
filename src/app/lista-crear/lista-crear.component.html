@@ -1,1 +1,27 @@
-<p>lista-crear works!</p>
+<div>
+    <input
+      type="text"
+      placeholder="Buscar película..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="filterPeliculas()"
+    />
+</div>
+
+<div>
+    <form [formGroup]="listaForm" (ngSubmit)="agregarLista()">
+        <input formControlName="nombre" type="text" placeholder="Nombre de la lista" />
+      
+        <div formArrayName="peliculas">
+            <div *ngFor="let control of peliculasArray.controls; let i = index">
+              <select [formControlName]="i">
+                <option *ngFor="let pelicula of filteredPeliculas" [value]="pelicula.idpelicula">{{ pelicula.nombre }}</option>
+              </select>
+              <button type="button" (click)="removePelicula(i)">Eliminar</button>
+            </div>
+            <button type="button" (click)="addPelicula()">Agregar Película</button>
+          </div>
+          
+      
+        <button type="submit">Guardar Lista</button>
+    </form>
+</div>
