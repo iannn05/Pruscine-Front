@@ -22,7 +22,7 @@ export class DirectorService {
     };
   }
 
-  private BASE_URL = 'http://192.168.1.11:3000/director';
+  private BASE_URL = 'http://172.18.0.1:3000/director';
 
   constructor(private http: HttpClient) { }
 
