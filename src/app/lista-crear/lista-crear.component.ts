@@ -70,7 +70,7 @@ export class ListaCrearComponent implements OnInit {
     console.log('Datos del usuario:' + userData.idusuario);
 
     if (this.listaForm.valid) {
-      console.log('Reseña enviada:', this.listaForm.value);
+      console.log('Lista enviada:', this.listaForm.value);
       this.listaService.addLista(this.listaForm.value, userData.idusuario).subscribe(() => {
         window.location.reload();
       });

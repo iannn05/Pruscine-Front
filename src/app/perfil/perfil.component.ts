@@ -5,8 +5,9 @@ import { IUser } from '../models/user.model';
 import { UserService } from '../services/user.services';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.services';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ListaService } from '../services/lista.services';
 
 
 
@@ -16,7 +17,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: './perfil.component.html',  
   styleUrls: ['./perfil.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule]  
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, RouterModule]  
 })
 export class PerfilComponent implements OnInit {
   
@@ -24,8 +25,9 @@ export class PerfilComponent implements OnInit {
   formulario: FormGroup;
   usuario: IUser;
   router: Router;
+  listas: any[] = [];
 
-  constructor(private userService: UserService, private authService: AuthService) {
+  constructor(private userService: UserService, private authService: AuthService, private listaService: ListaService) {
     this.router = inject(Router);
     this.usuario = {} as IUser;
 
@@ -46,6 +48,16 @@ export class PerfilComponent implements OnInit {
       this.usuario = data;
       console.log(this.usuario.idusuario);
     });
+
+    this.listaService.getListasUsuario(userData.idusuario).subscribe(
+      (data) => {
+        this.listas = data.listas;
+        console.log(this.listas);
+      },
+      (error) => {
+        console.error('Error al obtener las listas:', error);
+      }
+    );
 
 
     this.formulario = new FormGroup({

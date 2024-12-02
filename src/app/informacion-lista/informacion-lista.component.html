@@ -1,18 +1,12 @@
 <div *ngIf="lista" class="detail-container">
-    <h1>{{ lista.nombre }}</h1>
+    <h1>{{ lista.lista.nombre }}</h1>
 </div>
 
 <div>
     <h1>Peliculas:</h1>
     <div *ngFor="let pelicula of peliculas">
         <div class="reseña">
-            <p ><strong>Nombre:</strong> {{ pelicula.nombre }}</p>
-            <button 
-                *ngIf="isAdmin() || isOwner(lista.idusuario)" 
-                (click)="deleteLista(lista.idlista)" 
-                class="btn-delete">
-                <i class="fa-solid fa-trash"></i>
-            </button>
+            <p><strong>Nombre:</strong> {{ pelicula.nombre }}</p>
         </div>
     </div>
 </div>

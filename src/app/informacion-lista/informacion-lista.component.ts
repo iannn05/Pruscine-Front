@@ -32,6 +32,7 @@ export class InformacionListaComponent implements OnInit {
     ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
+        this.getLista(+id);
         this.getListaPelicula(+id);
       }
     }
@@ -40,6 +41,8 @@ export class InformacionListaComponent implements OnInit {
       this.listaService.getOneLista(+id).subscribe(
         (data) => {
           this.lista = data;
+          console.log('la lista');
+          console.log(this.lista);
         },
         (error) => {
           console.error('Error al cargar los detalles de la película:', error);
@@ -48,70 +51,28 @@ export class InformacionListaComponent implements OnInit {
     }
 
     getListaPelicula(id: number) {
-      console.log("getListaPelicula " + id);
-      this.listaPeliculaService.getPeliculas(id).subscribe(
-        (response) => {
-          // Verifica la estructura de la respuesta
-          console.log("Respuesta de la API:", JSON.stringify(response));  // Imprime la respuesta completa
-    
-          // Asigna la respuesta a listaPeliculas
-          this.listaPeliculas = response;
-    
-          // Verifica si la respuesta es un array antes de iterar
-          if (Array.isArray(this.listaPeliculas)) {
-            console.log("listaPeliculas:", JSON.stringify(this.listaPeliculas));
-            
-            // Itera sobre la lista y obtiene las películas individuales
-            this.listaPeliculas.forEach((pg: { peliculaIdpelicula: number; }) => {
-              console.log("Obteniendo película con id:", pg.peliculaIdpelicula);
-              this.getPelicula(pg.peliculaIdpelicula);  // Llama a getPeliculas para cada ID de película
-            });
-          } else {
-            console.error("La respuesta no es un array válido.");
-          }
-        },
-        (error) => {
-          console.error('Error al cargar las peliculas:', error);
-        }
-      );
-    }
-  
-    getPelicula(id: number) {
-      console.log("getPelicula " + id);
-      this.peliService.getOnePelicula(+id).subscribe(
+      this.listaPeliculaService.getPeliculas(+id).subscribe(
         (data) => {
-          console.log(data);
-          this.peliculas.push(data);
-          // Imprimir cada película de manera más legible
-          console.log("peliculas:", this.peliculas);
+          this.listaPeliculas = data;
+          this.listaPeliculas.forEach((pg) => this.getPelicula(pg.peliculaIdpelicula));
         },
         (error) => {
           console.error('Error al cargar los detalles de la película:', error);
         }
       );
     }
-    
-
-    isAdmin(): boolean {
-      console.log("isAdmin");
-      const token = localStorage.getItem('token');
-      if (token) {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        
-        console.log(payload);
-        console.log(payload.rol);
-        return payload.rol === 'true';
-      }
-      return false;
-    }
   
-    isOwner(id: number): boolean {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.idusuario === id;
-      }
-      return false;
+    getPelicula(id: number) {
+      this.peliService.getOnePelicula(+id).subscribe(
+        (data) => {
+          this.peliculas.push(data);
+          console.log("las peliculas de getPelicula");
+          console.log(data);
+        },
+        (error) => {
+          console.error('Error al cargar los detalles del género:', error);
+        }
+      );
     }
   
     deleteLista(listaId: number) {

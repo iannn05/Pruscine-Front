@@ -42,6 +42,10 @@ export class ListaService {
     return this.http.get(`${this.BASE_URL}`, this.getHttpOptions());
   }
 
+  getListasUsuario(idusuario: number): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/usuario/${idusuario}`, this.getHttpOptions());
+  }
+
   addLista(lista: any, idusuario: number): Observable<void> {
     const body = { ...lista, idusuario };
     console.log("lista y usuario");

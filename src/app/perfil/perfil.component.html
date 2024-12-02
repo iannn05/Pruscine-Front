@@ -24,6 +24,15 @@
   </div>
 </section>
 <div>
-  <p>Mis listas: </p>
+  <p>Mis listas:</p>
+  
+  <div *ngFor="let lista of listas">
+    <div>
+      <h3>{{ lista.nombre }}</h3>
+        <button *ngIf="lista.idlista" [routerLink]="['/informacion-lista', lista.idlista]">
+          Más información
+        </button>
+    </div>
+  </div>
   
 </div>
