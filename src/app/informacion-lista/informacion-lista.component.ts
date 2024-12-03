@@ -7,6 +7,7 @@ import { PeliService } from '../services/peli.services';
 import { ListaService } from '../services/lista.services';
 import { ListaPeliculaService } from '../services/lista.pelicula.services';
 import { map } from 'rxjs';
+import { AuthService } from '../services/auth.services';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class InformacionListaComponent implements OnInit {
     private route: ActivatedRoute,
     private listaService: ListaService,
     private listaPeliculaService: ListaPeliculaService,
-    private peliService: PeliService
+    private peliService: PeliService,
+    private authService: AuthService
     ) {}
 
     ngOnInit(): void {
@@ -37,6 +39,21 @@ export class InformacionListaComponent implements OnInit {
       }
     }
   
+    copiarLista(): void {
+      const userData = this.authService.getData();
+      console.log("la lista");
+      console.log(this.lista);
+      console.log("el usuario");
+      console.log(userData.idusuario);
+      console.log("las peliculas");
+      console.log(this.listaPeliculas);
+
+      this.listaService.copyLista(this.lista, userData.idusuario, this.listaPeliculas).subscribe(() => {
+        window.location.reload();
+      });
+    
+    }
+
     getLista(id: number) {
       this.listaService.getOneLista(+id).subscribe(
         (data) => {

@@ -57,6 +57,20 @@ export class ListaService {
     return this.http.post<void>(`${this.BASE_URL}`, body, this.getHttpOptions());
   }
 
+  copyLista(lista: any, idusuario: number, listaPeliculas: any[]): Observable<void> {
+    // Transformar los datos al formato deseado
+    const transformedBody = {
+      nombre: lista.lista.nombre + "(Copia)", // Extrae el nombre de la lista
+      peliculas: listaPeliculas.map((pelicula) => String(pelicula.peliculaIdpelicula)), // Mapea las películas a un array de strings
+      idusuario: idusuario // Asigna el nuevo idusuario
+    };
+  
+    console.log("Datos transformados:", transformedBody);
+  
+    return this.http.post<void>(`${this.BASE_URL}`, transformedBody, this.getHttpOptions());
+  }
+  
+
   deleteLista(id: number): Observable<void> {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`, this.getHttpOptions());
   }

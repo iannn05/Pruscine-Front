@@ -1,152 +1,108 @@
+/* Estilo general */
 body {
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  background-color: #111;
-  color: #fff;
 }
 
-/* Contenedor de la búsqueda */
+/* Contenedor de búsqueda */
 .search-container {
-  padding: 20px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 .search-input {
-  padding: 12px;
-  width: 80%;
-  max-width: 500px;
-  font-size: 1rem;
-  border: 2px solid #e50914; /* Rojo similar a Netflix */
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #d32f2f;
   border-radius: 8px;
-  color: #fff;
-  background-color: #333;
-  transition: all 0.3s ease;
+  background-color: #222222;
+  color: #ffffff;
+  font-size: 16px;
 }
 
 .search-input::placeholder {
-  color: #ddd;
+  color: #bdbdbd;
 }
 
-.search-input:focus {
-  outline: none;
-  border-color: #fff; /* Resalta el borde al enfocar */
-  background-color: #444;
-}
-
-/* Contenedor de las tarjetas */
+/* Contenedor de las películas */
 .top50-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
   padding: 20px;
 }
 
-/* Estilo de la tarjeta */
 .card {
-  background-color: #222;
-  border: 1px solid #444;
+  background-color: #1e1e1e;
   border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
-.card-img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-/* Contenido de la tarjeta */
 .card-content {
-  padding: 16px;
+  padding: 20px;
   text-align: center;
 }
 
 .card-content h3 {
-  margin: 10px 0;
-  font-size: 1.2rem;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
+  color: #ff5252;
+  margin: 0 0 10px;
 }
 
 .card-content button {
-  margin-top: 12px;
-  padding: 10px 16px;
-  background-color: #e50914;
-  color: #fff;
+  background-color: #d32f2f;
+  color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s;
 }
 
 .card-content button:hover {
-  background-color: #b20710;
-  transform: scale(1.05);
+  background-color: #b71c1c;
 }
 
 /* Controles de paginación */
-.pagination-controls {
+.pagination-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  align-items: center;
+  margin: 20px 0;
 }
 
-.pagination-controls button {
-  padding: 10px 15px;
-  font-size: 1rem;
-  background-color: #333;
+.pagination-container button {
+  background-color: #d32f2f;
+  color: #ffffff;
   border: none;
-  border-radius: 6px;
-  color: #fff;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 0 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s;
 }
 
-.pagination-controls button:hover {
-  background-color: #e50914;
-  transform: scale(1.05);
+.pagination-container button:hover {
+  background-color: #b71c1c;
 }
 
-.pagination-controls button[disabled] {
-  background-color: #888;
+.pagination-container button[disabled] {
+  background-color: #555555;
   cursor: not-allowed;
 }
 
-.pagination-controls span {
-  color: #fff;
-  font-size: 1rem;
-}
-
-/* Estilos responsivos */
-@media (max-width: 1200px) {
-.top50-container {
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
-}
-}
-
-@media (max-width: 768px) {
-.top50-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
-}
-
-.search-input {
-    width: 90%;
-}
-}
-
-@media (max-width: 480px) {
-.top50-container {
-    grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
-}
+.pagination-container span {
+  color: #ffffff;
+  font-weight: bold;
+  margin: 0 10px;
 }

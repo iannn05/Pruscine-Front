@@ -72,3 +72,10 @@ font-optical-sizing: auto;
 font-weight: weight;
 font-style: normal;
 }
+
+.logo{
+  top: 0;
+  width: 30%;
+  height: 50%;
+  object-fit: cover;
+}

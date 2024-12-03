@@ -1,85 +1,70 @@
-/* Estilos generales */
+/* Estilo general */
 body {
-    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212; /* Fondo oscuro */
-    color: #ffffff; /* Texto blanco */
-}
-
-/* Contenedor de detalles de la lista */
-.detail-container {
-    padding: 20px;
-    background-color: #1e1e1e; /* Fondo oscuro del contenedor */
-    border-radius: 8px;
-    margin: 20px;
-}
-
-.detail-container h1 {
-    color: #e53935; /* Acento rojo en el título */
-}
-
-/* Estilo para las reseñas de películas */
-.reseña {
-    background-color: #333; /* Fondo oscuro para cada reseña */
-    border-radius: 8px;
+  }
+  
+  /* Contenedor de detalles de la lista */
+  .detail-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .detail-container h1 {
+    font-size: 2.5em;
+    color: #ff5252;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #d32f2f;
+    display: inline-block;
+  }
+  
+  /* Sección de películas */
+  div > h1 {
+    font-size: 1.8em;
+    color: #ff5252;
+    margin: 20px 0;
+  }
+  
+  .reseña {
+    background-color: #1e1e1e;
+    margin: 10px 0;
     padding: 15px;
-    margin: 10px 0;
-    color: #ddd; /* Texto claro */
-}
-
-/* Información de la película */
-.pelicula {
-    margin: 10px 0;
-}
-
-/* Botón de eliminar */
-.btn-delete {
-    background-color: #dc3545; /* Rojo oscuro */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .reseña p {
+    margin: 0;
+    font-size: 1.1em;
     color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.btn-delete:hover {
-    background-color: #c82333; /* Rojo más oscuro al pasar el cursor */
-}
-
-.btn-delete i {
-    margin-right: 5px; /* Espacio entre el icono y el texto */
-}
-
-h1{
+  }
+  
+  .reseña p strong {
+    color: #ff5252;
+  }
+  
+  /* Botón de navegación */
+  button {
+    background-color: #d32f2f;
     color: #ffffff;
-}
-
-/* Estilos responsive */
-@media (max-width: 768px) {
-    .detail-container {
-        padding: 15px;
-    }
-
-    .reseña {
-        padding: 10px;
-    }
-
-    .btn-delete {
-        padding: 6px 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .detail-container h1 {
-        font-size: 20px;
-    }
-
-    .btn-delete {
-        font-size: 14px;
-        padding: 5px 10px;
-    }
-}
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #b71c1c;
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 4px 2px rgba(255, 82, 82, 0.7);
+  }
+  
