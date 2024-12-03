@@ -46,7 +46,7 @@ export class InformacionPeliculaComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.getPelicula(+id);
+      this.getOnepelicula(+id);
       this.getPeliculaGenero(+id);
       this.getPeliculaActor(+id);
       this.getPeliculaDirector(+id);
@@ -55,16 +55,17 @@ export class InformacionPeliculaComponent implements OnInit {
     }
   }
 
-  getPelicula(id: number) {
-    this.peliService.getOnePelicula(+id).subscribe(
+  getOnepelicula(id: number) {
+    this.peliService.getOnePelicula(id).subscribe(
       (data) => {
-        this.pelicula = data;
+        this.pelicula = data; // Directamente asigna la película devuelta
       },
       (error) => {
         console.error('Error al cargar los detalles de la película:', error);
       }
     );
   }
+  
 
   getPeliculaGenero(id: number) {
     this.peliGeneroService.getGeneros(+id).subscribe(

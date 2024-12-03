@@ -63,11 +63,14 @@ export class InformacionListaComponent implements OnInit {
     }
   
     getPelicula(id: number) {
-      this.peliService.getOnePelicula(+id).subscribe(
+      this.peliService.getPeliculas().subscribe(
         (data) => {
-          this.peliculas.push(data);
-          console.log("las peliculas de getPelicula");
-          console.log(data);
+          const pelicula = data.find((p: any) => p.id === id);
+          if (pelicula) {
+            this.peliculas.push(pelicula);
+            console.log("las peliculas de getPelicula");
+            console.log(pelicula);
+          }
         },
         (error) => {
           console.error('Error al cargar los detalles del género:', error);

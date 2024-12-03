@@ -27,9 +27,12 @@ export class PeliService {
   }
 
   getPeliculas(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}`, this.httpOptions);
+    return this.http.get(`${this.BASE_URL}`, this.httpOptions);  // Devuelve todas las películas sin paginación
   }
 
+  getPeliculasPaginadas(page: number): Observable<any> {
+    return this.http.get<any>(`${this.BASE_URL}?page=${page}`);
+  }
   addPelicula(pelicula: any): Observable<void> {
     console.log(pelicula);
     return this.http.post<void>(`${this.BASE_URL}`, pelicula, this.httpOptions);

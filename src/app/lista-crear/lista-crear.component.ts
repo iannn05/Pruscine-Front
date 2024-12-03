@@ -37,7 +37,7 @@ export class ListaCrearComponent implements OnInit {
     this.peliculaService.getPeliculas().subscribe((data) => {
       this.peliculas = Array.isArray(data) ? data : [];
       this.filteredPeliculas = this.peliculas; // Inicialmente mostramos todas las películas
-    });
+});
   }
 
   get peliculasArray(): FormArray {

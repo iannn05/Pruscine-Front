@@ -31,11 +31,11 @@ export class ReviewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.peliService.getPeliculas().subscribe((data) => {
-      this.peliculas = data;
-      this.filteredPeliculas = data;
-    });
-  }
+   this.peliService.getPeliculas().subscribe((data) => {
+     this.peliculas = data;
+     this.filteredPeliculas = data;
+   });
+ }
 
   filterPeliculas(): void {
     this.filteredPeliculas = this.peliculas.filter((pelicula) =>
