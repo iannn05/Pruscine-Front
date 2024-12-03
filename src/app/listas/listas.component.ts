@@ -18,9 +18,10 @@ export class ListasComponent {
   activatedRoute: any;
   listas: any[] = [];
   filteredListas: any[] = [];
-  displayedListas: any[] = [];
   searchQuery: string = '';
   currentPage: number = 1;
+  totalPages: number = 1;
+  totalItems: number = 0;
   itemsPerPage: number = 8;
 
   constructor(public authService: AuthService, private listaService: ListaService) {
@@ -28,49 +29,54 @@ export class ListasComponent {
   }
 
   ngOnInit(): void {
-    this.listaService.getListas().subscribe(
-      (data) => {
-        this.listas = data.listas;
-        console.log(this.listas);
-        this.filteredListas = [...this.listas];
-        this.paginate(); 
+    // Llamada para obtener las películas de la página 1 por defecto
+    this.loadListasPaginadas(this.currentPage);
+  }
+
+  loadListasPaginadas(page: number): void {
+    this.listaService.getListasPaginadas(page).subscribe(
+      (response) => {
+        console.log('Respuesta del servicio:', response);
+        this.listas = Array.isArray(response.listas) ? response.listas : [];
+        this.totalItems = this.listas.length; // Asegúrate de calcular correctamente el total
+        this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+        this.updatePagedListas(); // Actualiza las listas para la página actual
       },
       (error) => {
-        console.error('Error al obtener las películas:', error);
+        console.error('Error al obtener las listas:', error);
+        this.listas = [];
+        this.updatePagedListas(); // Limpia los datos en caso de error
       }
     );
   }
+  
+  
 
+  // Función para actualizar las películas que se muestran en la página actual
+  updatePagedListas(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = this.currentPage * this.itemsPerPage;
+    this.filteredListas = this.listas.slice(startIndex, endIndex);
+    console.log('Listas filtradas:', this.filteredListas);
+  }
+  
+
+  // Función para cambiar de página
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updatePagedListas();  // Actualizar las películas según la página seleccionada
+    }
+  }
+
+  // Función para aplicar el filtro de búsqueda
   filterListas(): void {
     if (this.searchQuery) {
       this.filteredListas = this.listas.filter(lista =>
         lista.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     } else {
-      this.filteredListas = [...this.listas];
-    }
-
-    this.currentPage = 1;
-    this.paginate();
-  }
-
-  paginate(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.displayedListas = this.filteredListas.slice(startIndex, endIndex);
-  }
-
-  nextPage(): void {
-    if ((this.currentPage * this.itemsPerPage) < this.filteredListas.length) {
-      this.currentPage++;
-      this.paginate();
-    }
-  }
-
-  prevPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.paginate();
+      this.updatePagedListas();  // Si no hay búsqueda, mostrar las películas de la página actual
     }
   }
 }

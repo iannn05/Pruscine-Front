@@ -42,6 +42,10 @@ export class ListaService {
     return this.http.get(`${this.BASE_URL}`, this.getHttpOptions());
   }
 
+  getListasPaginadas(page: number): Observable<any> {
+    return this.http.get<any>(`${this.BASE_URL}?page=${page}`);
+  }
+
   getListasUsuario(idusuario: number): Observable<any> {
     return this.http.get(`${this.BASE_URL}/usuario/${idusuario}`, this.getHttpOptions());
   }

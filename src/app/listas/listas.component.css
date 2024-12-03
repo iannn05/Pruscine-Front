@@ -1,111 +1,68 @@
-/* Estilo general de la aplicación */
-body {
-    background-color: #121212; /* Fondo oscuro */
-    color: #ffffff; /* Texto blanco */
-    font-family: Arial, sans-serif;
-  }
-  
-  a {
-    color: #e53935; /* Color rojo */
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #ff5252; /* Rojo más claro al pasar el cursor */
-  }
-  
-  /* Contenedor de búsqueda */
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
-  .search-input {
-    width: 300px;
-    padding: 10px;
-    background-color: #333333; /* Fondo del input */
-    border: 1px solid #e53935; /* Borde rojo */
-    color: #ffffff;
-    border-radius: 5px;
-  }
-  
-  /* Tarjetas de listas */
+/* Contenedor de las listas (usa el diseño de grid de "top50") */
+.top50-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+/* Tarjeta individual (igual que en "top50") */
+.card {
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-content h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.card-content button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-content button:hover {
+  background-color: #b20710;
+  transform: scale(1.05);
+}
+
+/* Responsividad */
+@media (max-width: 1200px) {
   .top50-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .card {
-    background-color: #1e1e1e; /* Fondo de tarjeta más claro */
-    border: 1px solid #e53935;
-    border-radius: 8px;
-    margin: 15px;
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-  }
-  
-  .card-content h3 {
-    color: #e53935; /* Acento rojo en el título */
-  }
-  
-  button {
-    background-color: #e53935; /* Botón rojo */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    background-color: #ff5252; /* Rojo más claro al pasar el cursor */
-  }
-  
-  /* Controles de paginación */
-  .pagination-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .pagination-controls button {
-    background-color: #e53935;
-    margin: 0 10px;
-  }
-  
-  .pagination-controls span {
-    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .top50-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Estilo para el enlace "Crear lista" */
-.btn-crear {
-    display: inline-block;
-    background-color: #e53935; /* Rojo */
-    color: white;
-    text-align: center;
-    padding: 12px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .search-input {
+    width: 90%;
   }
-  
-  .btn-crear:hover {
-    background-color: #ffffff; /* Rojo más claro al pasar el cursor */
+}
+
+@media (max-width: 480px) {
+  .top50-container {
+    grid-template-columns: 1fr;
   }
-  
-  /* Centrado del enlace (botón) en su contenedor */
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
+}

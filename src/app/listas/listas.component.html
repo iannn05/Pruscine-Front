@@ -11,19 +11,26 @@
     />
   </div>
 
+<!-- Contenedor de listas con diseño de grid -->
 <div class="top50-container">
-    <div *ngFor="let lista of displayedListas" class="card">
-      <div class="card-content">
-        <h3>{{ lista.nombre }}</h3>
-        <button *ngIf="lista.idlista" [routerLink]="['/informacion-lista', lista.idlista]">
-            Más información
-          </button>
-      </div>
+  <div *ngFor="let lista of filteredListas" class="card">
+    <div class="card-content">
+      <h3>{{ lista.nombre }}</h3>
+      <p>{{ lista.descripcion }}</p>
+      <button *ngIf="lista.idlista" [routerLink]="['/informacion-lista', lista.idlista]">
+        Más información
+      </button>
     </div>
   </div>
+</div>
 
-  <div class="pagination-controls">
-    <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
-    <span>Página {{ currentPage }}</span>
-    <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= listas.length">Siguiente</button>
-  </div>
+<!-- Controles de paginación -->
+<div class="pagination-controls">
+  <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+    Anterior
+  </button>
+  <span>Página {{ currentPage }} de {{ totalPages }}</span>
+  <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+    Siguiente
+  </button>
+</div>

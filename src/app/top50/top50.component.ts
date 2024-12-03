@@ -19,7 +19,7 @@ export class Top50Component {
   currentPage: number = 1;
   totalPages: number = 1;
   totalItems: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 8;
 
   constructor(private peliService: PeliService) { }
 

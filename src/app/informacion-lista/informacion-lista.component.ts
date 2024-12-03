@@ -65,7 +65,7 @@ export class InformacionListaComponent implements OnInit {
     getPelicula(id: number) {
       this.peliService.getPeliculas().subscribe(
         (data) => {
-          const pelicula = data.find((p: any) => p.id === id);
+          const pelicula = data.find((p: any) => p.idpelicula === id);
           if (pelicula) {
             this.peliculas.push(pelicula);
             console.log("las peliculas de getPelicula");
