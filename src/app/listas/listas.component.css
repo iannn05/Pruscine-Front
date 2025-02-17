@@ -1,0 +1,122 @@
+/* Estilo general */
+body {
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-crear {
+  background-color: #d32f2f; /* Rojo oscuro */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-crear:hover {
+  background-color: #b71c1c; /* Más oscuro al pasar el mouse */
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #d32f2f;
+  border-radius: 8px;
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.search-input::placeholder {
+  color: #bdbdbd;
+}
+
+/* Contenedor de listas */
+.top50-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.card-content h3 {
+  color: #ff5252;
+  margin: 0 0 10px;
+}
+
+.card-content p {
+  color: #bdbdbd;
+  margin: 0 0 20px;
+}
+
+.card-content button {
+  background-color: #d32f2f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card-content button:hover {
+  background-color: #b71c1c;
+}
+
+/* Controles de paginación */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination-controls button {
+  background-color: #d32f2f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-controls button[disabled] {
+  background-color: #555555;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  color: #ffffff;
+  font-weight: bold;
+  margin: 0 10px;
+}

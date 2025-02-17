@@ -1,0 +1,108 @@
+/* Contenedor de detalles de la película */
+.detail-container {
+  background-color: #222; /* Fondo oscuro */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+}
+
+.detail-container h1 {
+  color: #e50914; /* Rojo para títulos */
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.detail-container p {
+  color: #ddd; /* Texto claro */
+  margin: 8px 0;
+}
+
+.detail-container p strong {
+  color: #fff; /* Resaltar texto importante */
+}
+
+/* Contenedor de reseñas */
+.review-title {
+  color: #e50914; /* Rojo para títulos */
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.reseña {
+  background-color: #333; /* Fondo para reseñas */
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.reseña .usuario,
+.reseña .calificacion,
+.reseña .comentario {
+  color: #ddd; /* Texto claro */
+  margin: 10px 0;
+}
+
+.reseña strong {
+  color: #fff; /* Resaltar texto importante */
+}
+
+/* Botón eliminar reseña */
+.btn-delete {
+  background-color: #e50914; /* Rojo para botones */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #b20710; /* Rojo más oscuro al pasar el mouse */
+  transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .detail-container {
+    padding: 15px;
+  }
+
+  .review-title {
+    font-size: 1.4rem;
+  }
+
+  .reseña {
+    padding: 10px;
+  }
+
+  .btn-delete {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+/* Estilo base del ícono del tacho */
+.btn-delete {
+  background: none; /* Sin fondo */
+  border: none; /* Sin borde */
+  color: #e50914; /* Rojo para el ícono */
+  font-size: 1.5rem; /* Tamaño del ícono */
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Estilo al pasar el mouse */
+.btn-delete:hover {
+  background-color: rgba(229, 9, 20, 0.2); /* Fondo rojo semitransparente */
+  border-radius: 50%; /* Bordes redondeados para el fondo */
+  color: #fff; /* Ícono blanco */
+  transform: scale(1.2); /* Efecto de agrandamiento */
+  padding: 5px; /* Añade espacio interno para separar el ícono del borde */
+}
+

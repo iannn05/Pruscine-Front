@@ -1,0 +1,110 @@
+/* Estilo general */
+body {
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor de búsqueda */
+div > input[type="text"] {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid #d32f2f;
+  border-radius: 8px;
+  background-color: #222222;
+  color: #ffffff;
+}
+
+div > input[type="text"]::placeholder {
+  color: #bdbdbd;
+}
+
+/* Estilos del formulario */
+form {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form input[type="text"],
+form select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #d32f2f;
+  border-radius: 8px;
+  background-color: #222222;
+  color: #ffffff;
+}
+
+form input[type="text"]::placeholder {
+  color: #bdbdbd;
+}
+
+form select option {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Botones */
+form button {
+  background-color: #d32f2f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #b71c1c;
+}
+
+form button[type="button"] {
+  margin-left: 5px;
+}
+
+form button[type="submit"] {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+}
+
+/* Botón deshabilitado */
+form button:disabled {
+  background-color: #555555;
+  cursor: not-allowed;
+}
+
+/* Contenedor de las películas */
+div[formArrayName="peliculas"] {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+div[formArrayName="peliculas"] div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+div[formArrayName="peliculas"] div select {
+  flex: 1;
+}
+
+div[formArrayName="peliculas"] div button {
+  margin-left: 10px;
+  padding: 8px 12px;
+}

@@ -1,0 +1,71 @@
+<div>
+    <h2 (click)="toggleForm('pelicula')" class="toggle-header">Registrar Película</h2>
+    <form *ngIf="showPeliculaForm" [formGroup]="peliculaForm" (ngSubmit)="agregarPelicula()">
+        <input formControlName="nombre" type="text" placeholder="Nombre" />
+        <input formControlName="anioPublicado" type="date" placeholder="Año Publicado" />
+        <input formControlName="pais" type="text" placeholder="País" />
+      
+        <!-- Generos -->
+        <div formArrayName="generos">
+          <div *ngFor="let control of generosArray.controls; let i = index">
+            <select [formControlName]="i">
+              <option *ngFor="let genero of generos" [value]="genero.idgenero">{{ genero.nombre }}</option>
+            </select>
+            <button type="button" (click)="removeGenero(i)">Eliminar</button>
+          </div>
+          <button type="button" (click)="addGenero()">Agregar Género</button>
+        </div>
+      
+        <!-- Actores -->
+        <div formArrayName="actores">
+          <div *ngFor="let control of actoresArray.controls; let i = index">
+            <select [formControlName]="i">
+              <option *ngFor="let actor of actores" [value]="actor.idactor">{{ actor.nombre }}</option>
+            </select>
+            <button type="button" (click)="removeActor(i)">Eliminar</button>
+          </div>
+          <button type="button" (click)="addActor()">Agregar Actor</button>
+        </div>
+      
+        <!-- Directores -->
+        <div formArrayName="directores">
+          <div *ngFor="let control of directoresArray.controls; let i = index">
+            <select [formControlName]="i">
+              <option *ngFor="let director of directores" [value]="director.iddirector">{{ director.nombre }}</option>
+            </select>
+            <button type="button" (click)="removeDirector(i)">Eliminar</button>
+          </div>
+          <button type="button" (click)="addDirector()">Agregar Director</button>
+        </div>
+      
+        <button type="submit">Guardar Película</button>
+    </form>
+</div>
+
+<div>
+    <h2 (click)="toggleForm('actor')" class="toggle-header">Agregar Actor</h2>
+    <form *ngIf="showActorForm" [formGroup]="actorForm" (submit)="agregarActor()">
+        <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
+        <input type="date" placeholder="Fecha de Nacimiento" class="date" formControlName="fechaNacimiento">
+        <textarea type="text" placeholder="Descripcion" class="name" formControlName="descripcion"></textarea>
+        <button type="submit">Agregar actor</button>
+    </form>
+</div>
+
+<div>
+    <h2 (click)="toggleForm('director')" class="toggle-header">Agregar Director</h2>
+    <form *ngIf="showDirectorForm" [formGroup]="directorForm" (submit)="agregarDirector()">
+        <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
+        <input type="date" placeholder="Fecha de Nacimiento" class="date" formControlName="fechaNacimiento">
+        <textarea type="text" placeholder="Descripcion" class="name" formControlName="descripcion"></textarea>
+        <button type="submit">Agregar director</button>
+    </form>
+</div>
+
+<div>
+    <h2 (click)="toggleForm('genero')" class="toggle-header">Agregar Género</h2>
+    <form *ngIf="showGeneroForm" [formGroup]="generoForm" (submit)="agregarGenero()">
+        <input type="text" placeholder="Nombre del genero" class="name" formControlName="nombre">
+        <button type="submit">Agregar género</button>
+    </form>
+</div>

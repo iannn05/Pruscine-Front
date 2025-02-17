@@ -1,0 +1,10 @@
+<div>
+    <form [formGroup]="applyForm" (submit)="signup()">
+      <input type="text" placeholder="Nombre" class="name" formControlName="nombre">
+      <input type="email" placeholder="E-mail" class="email" formControlName="email">
+      <input type="password" placeholder="Contraseña" class="password" formControlName="contrasenia">
+      <input type="date" placeholder="Fecha de Nacimiento" class="date" formControlName="fechaNacimiento">
+      <button type="submit">Registrarse</button>
+      <a [routerLink]="['/ingreso']">¿Ya tienes cuenta? Ingresar</a>
+    </form>
+  </div>

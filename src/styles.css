@@ -49,3 +49,25 @@ rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: auto; /* Evita cualquier desplazamiento */
+    width: 100%;
+    height: 100%;
+  }
+  
+  app-root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Altura total igual a la ventana */
+  }
+  
+  app-navbar {
+    flex-shrink: 0; /* Navbar no cambia de tamaño */
+  }
+  
+  app-inicio {
+    flex-grow: 1; /* Ocupa el espacio restante */
+  }
+  
