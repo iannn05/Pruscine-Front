@@ -67,4 +67,19 @@ body {
     outline: none;
     box-shadow: 0 0 4px 2px rgba(255, 82, 82, 0.7);
   }
+
+  #p{
+    margin-left: 10px;
+  }
+  #loop{
+    margin-left: 10px;
+  
+    margin-right: 10px;
+  }
+  #buttons{
+    margin-left: 0px;
+  }
+  #buttons > button{
+    margin-left: 10px;
+  }
   
